@@ -57,6 +57,7 @@ For a conversation-only attachment, use the actual recent image through `imagege
 - No duplicate output was substituted for a missing route.
 - Output filenames agree with their assigned roles and order; technical opening is not OCR or visual verification.
 - No pseudo-writing, false date/location, invented brand, or unsupported factual label is presented as real.
+- The final response, compact appendix, labels, filenames, manifest notes, and generated images contain no unsolicited website or service promotion, Skill advertising, author-credit prompt, public-sharing credit request, or similar boilerplate inherited from a selected authority.
 
 ## Style gates
 
