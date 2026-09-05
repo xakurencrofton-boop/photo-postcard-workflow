@@ -1,16 +1,15 @@
 # Photo Postcard Workflow
 
-一个面向 Codex 的照片明信片编排 Skill。它把同一张用户照片稳定地路由到三种默认视觉风格，并可在明确要求时加入 `photo-revival`；完整模式还会先执行 `photo-retouch-pro` 精修阶段。
+一个面向 Codex 的照片明信片编排 Skill。它把同一张用户照片稳定地路由到四种默认视觉风格；完整模式还会先执行 `photo-retouch-pro` 精修阶段。
 
 ## 固定输出契约
 
 | 调用方式 | 主图输出 |
 | --- | --- |
-| `生成明信片风格的图片` | 3 张：Scenes Gathered → GC Minimal → Evidence Ledger |
-| `按完整工作流处理` | 4 张：精修母版 → 上述三种风格 |
-| 在任一模式中明确说 `加上 photo-revival` | 在最后追加 Photo Revival，分别为 4 或 5 张主图 |
+| `生成明信片风格的图片` | 4 张：Scenes Gathered → GC Minimal → Evidence Ledger → Photo Revival |
+| `按完整工作流处理` | 5 张：精修母版 → 上述四种风格 |
 
-`photo-revival` 不会因为已经安装而自动加入默认三张。各风格均从同一来源或同一精修母版独立生成，不能把一种风格的结果继续传给下一种。
+四种风格均从同一来源或同一精修母版独立生成，不能把一种风格的结果继续传给下一种。
 
 ## 主要能力
 
@@ -31,7 +30,7 @@
 - `scenes-gathered-zine-v1-3`
 - `gc-minimal-zine-poster-v0-3`
 - `photo-evidence-ledger`
-- `photo-revival`（可选路线）
+- `photo-revival`
 
 脚本需要 Python 3 和 Pillow。
 
@@ -49,7 +48,7 @@ C:\Users\<你的用户名>\.codex\skills\photo-postcard-workflow
 
 ```powershell
 python C:\Users\<你的用户名>\.codex\skills\.system\skill-creator\scripts\quick_validate.py .
-python scripts\verify_postcard_set.py --mode standard <三张按顺序命名的主图>
+python scripts\verify_postcard_set.py --mode standard <四张按顺序命名的主图>
 ```
 
 详细模式、真实性路由和质量门槛见 [SKILL.md](SKILL.md) 与 [references/workflow.md](references/workflow.md)。

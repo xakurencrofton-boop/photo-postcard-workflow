@@ -1,6 +1,6 @@
 ---
 name: photo-postcard-workflow
-description: Route user-supplied photographs through the established postcard workflow. Use when the user says “生成明信片风格的图片”, “按完整工作流处理”, asks to run the three postcard Skills together, requests Photo Retouch Pro followed by the style set, or explicitly asks to add the optional Photo Revival fourth route.
+description: Route user-supplied photographs through the established four-style postcard workflow. Use when the user says “生成明信片风格的图片”, “按完整工作流处理”, asks to run the postcard Skills together, or requests Photo Retouch Pro followed by the four-style set.
 ---
 
 # Photo Postcard Workflow
@@ -9,14 +9,13 @@ Turn one supplied photograph into a predictable comparison set. This Skill is th
 
 ## Resolve the mode
 
-- `生成明信片风格的图片` means **standard three-style mode**. When generation succeeds, return exactly three primary images, in this order:
+- `生成明信片风格的图片` means **standard four-style mode**. When generation succeeds, return exactly four primary images, in this order:
   1. `scenes-gathered-zine-v1-3`
   2. `gc-minimal-zine-poster-v0-3`
   3. `photo-evidence-ledger`
-- `按完整工作流处理` means **full mode**. First create one `photo-retouch-pro` master, then run the same three styles from that master. When all stages succeed, return exactly four primary images.
-- Add `photo-revival` only when the user explicitly says `加上 photo-revival`, `四种风格`, `手绘第四路线`, or otherwise clearly asks for it. Append it after Photo Evidence Ledger. Standard mode then returns four images; full mode returns five.
+  4. `photo-revival`
+- `按完整工作流处理` means **full mode**. First create one `photo-retouch-pro` master, then run the same four styles from that master. When all stages succeed, return exactly five primary images.
 - A request that names only `photo-revival` belongs to that Skill alone, not this comparison workflow.
-- Do not silently change the established three-image shortcut merely because Photo Revival is installed.
 
 If several source photos are supplied, choose one only when the user asks for a comparison from one shared source or asks the full workflow to select. Otherwise process each requested source separately and state the resulting count before generation.
 
@@ -30,7 +29,7 @@ Read and follow every selected Skill before generating:
 - `scenes-gathered-zine-v1-3`;
 - `gc-minimal-zine-poster-v0-3`;
 - `photo-evidence-ledger`;
-- `photo-revival` only for the explicit optional route;
+- `photo-revival`;
 - `imagegen` whenever built-in image generation or editing is used.
 
 Do not merge their visual grammars. Each style gets a separate generation call from the same source or approved master. Never use one style result as another style's input.
@@ -95,7 +94,7 @@ Default filenames:
 <batch>-01-scenes-gathered-zine.<ext>
 <batch>-02-gc-minimal-zine.<ext>
 <batch>-03-photo-evidence-ledger.<ext>
-<batch>-04-photo-revival.<ext>           # explicit optional route only
+<batch>-04-photo-revival.<ext>
 ```
 
 Keep a small run manifest with source hash, selected mode, selected Skill names, output paths, dimensions, and QA result when files can be saved locally. A contact sheet is optional and supplemental; return the individual full-resolution images as the deliverables.
