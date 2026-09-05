@@ -1,6 +1,6 @@
 interface:
   display_name: "Photo Postcard Workflow"
-  short_description: "Run the fixed three-style photo postcard workflow"
-  default_prompt: "Use $photo-postcard-workflow to generate the established three postcard styles from this photo."
+  short_description: "Run the fixed four-style photo postcard workflow"
+  default_prompt: "Use $photo-postcard-workflow to generate the established four postcard styles from this photo."
 policy:
   allow_implicit_invocation: true
